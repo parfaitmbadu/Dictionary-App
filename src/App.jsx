@@ -1,6 +1,7 @@
 import SearchBar from "./components/SearchBar";
 import useDictionary from "./hooks/useDictionary";
 import WordResult from "./components/WordResult";
+import TranslationResult from "./components/TranslationResult";
 
 function App() {
   const { data, status, message, search } = useDictionary();
@@ -25,8 +26,14 @@ function App() {
         {status === "notFound" && (
           <p className="mt-10 text-gray-500">{message}</p>
         )}
-        {status === "error" && <p className="mt-10 text-gray-500">{message}</p>}
-        {status === "success" && <WordResult entry={data} />}
+        {status === "error" && <p className="mt-10 text-red-600">{message}</p>}
+
+        {status === "success" && (
+          <>
+            <WordResult entry={data} />
+            <TranslationResult entry={data.word} />
+          </>
+        )}
       </main>
     </div>
   );
