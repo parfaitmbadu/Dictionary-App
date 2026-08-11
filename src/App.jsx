@@ -35,6 +35,10 @@ function App() {
           </>
         )}
       </main>
+
+      <footer className="px-6 py-6 text-center text-sm text-gray-400">
+        Developped by Parfait-K
+      </footer>
     </div>
   );
 }
