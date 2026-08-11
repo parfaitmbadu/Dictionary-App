@@ -13,6 +13,7 @@ const useDictionary = () => {
     setData(null);
 
     try {
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate a delay
       const entries = await fetchWord(word);
       setData(entries[0]);
       setStatus("success");

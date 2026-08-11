@@ -1,10 +1,12 @@
-const API_BASE = "https://api.dictionaryapi.dev/api/v2/entries/en";
-
-const fetchWord = async (word) => {
+const fetchTranslation = async (word) => {
+  const API_BASE =
+    "https://api.mymemory.translated.net/get?q={word}!&langpair=en|fr";
   let response;
 
   try {
-    response = await fetch(`${API_BASE}/${encodeURIComponent(word.trim())}`);
+    response = await fetch(
+      API_BASE.replace("{word}", encodeURIComponent(word.trim())),
+    );
   } catch {
     throw new Error("Something went wrong. Please try again");
   }
@@ -14,7 +16,7 @@ const fetchWord = async (word) => {
   }
 
   if (response.status === 404) {
-    const error = new Error(`No definition found for "${word}"`);
+    const error = new Error(`No translation found for "${word}"`);
     error.notFound = true;
     throw error;
   }
@@ -26,4 +28,4 @@ const fetchWord = async (word) => {
   return response.json();
 };
 
-export { fetchWord };
+export default fetchTranslation;
