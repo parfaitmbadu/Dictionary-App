@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Spinner from "./Spinner";
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, isLoading }) => {
   const [term, setTerm] = useState("");
 
   const handleSubmit = (event) => {
@@ -21,7 +22,7 @@ const SearchBar = ({ onSearch }) => {
         type="submit"
         className="px-6 py-3 rounded-lg bg-gray-900 text-white font-medium hover:bg-gray-700 transition-colors"
       >
-        Search
+        {isLoading ? <Spinner /> : "Search"}
       </button>
     </form>
   );
