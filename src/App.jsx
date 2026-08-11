@@ -1,19 +1,30 @@
 import SearchBar from "./components/SearchBar";
 import useDictionary from "./hooks/useDictionary";
 import WordResult from "./components/WordResult";
+import Spinner from "./components/Spinner";
 
 function App() {
   const { data, status, message, search } = useDictionary();
 
   return (
-    <div>
-      <h1>Dictionary App</h1>
-      <SearchBar onSearch={search} />
+    <div className="min-h-screen bg-amber-50">
+      <main className="max-w-2xl mx-auto px-6 py-16">
+        <h1 className="text-3xl font-bold text-gray-900">Dictionary</h1>
+        <SearchBar onSearch={search} />
 
-      {status === "loading" && <p>Loading…</p>}
-      {status === "notFound" && <p>{message}</p>}
-      {status === "error" && <p>{message}</p>}
-      {status === "success" && <WordResult entry={data} />}
+        {status === "idle" && (
+          <p className="mt-10 text-gray-500">
+            Search for a word to see its definition.
+          </p>
+        )}
+        {status === "loading" && <Spinner />}
+
+        {status === "notFound" && (
+          <p className="mt-10 text-gray-500">{message}</p>
+        )}
+        {status === "error" && <p className="mt-10 text-gray-500">{message}</p>}
+        {status === "success" && <WordResult entry={data} />}
+      </main>
     </div>
   );
 }
