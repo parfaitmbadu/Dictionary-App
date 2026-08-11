@@ -8,6 +8,7 @@ const useTranslation = (entry) => {
   useEffect(() => {
     if (!entry) return;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- loading flag for the fetch below is intentional
     setStatus("loading");
 
     fetchTranslation(entry)
