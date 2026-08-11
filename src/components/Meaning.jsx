@@ -20,10 +20,10 @@ const Meaning = ({ meaning }) => {
       </ul>
 
       {meaning.synonyms.length > 0 && (
-        <p className="mt-4 text-sm">
+        <p className="mt-6 text-sm">
           <span className="text-gray-400">Synonyms </span>
           <span className="font-medium text-gray-900">
-            {meaning.synonyms.join(", ")}
+            {meaning.synonyms.slice(0, 5).join(", ")}
           </span>
         </p>
       )}
