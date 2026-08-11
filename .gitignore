@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Local AI/workflow notes
+CLAUDE.md
+PROGRESS.md
+.claude/
+.codex/
+.agents/
